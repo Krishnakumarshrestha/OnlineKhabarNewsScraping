@@ -1,0 +1,17 @@
+name: Run R script at 8:15 PM
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+
+jobs:
+  knit_r_markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install R
+        uses: r-lib/actions/setup-r@v1
+      - name: Install knitr package
+        run: install.packages("knitr")
+      - name: Knit R Markdown file
+        run: Rscript -e "library(knitr); knit('README.rmd', output = 'README.html')"
