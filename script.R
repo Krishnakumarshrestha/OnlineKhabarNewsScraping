@@ -1,6 +1,7 @@
 library(rvest)
+library(dplyr)
 
-URL <- "https://www.onlinekhabar.com/"
+URL <- "https://english.onlinekhabar.com/"
 html_content <- read_html(URL)
 
 
@@ -15,9 +16,7 @@ vect <- stringr::str_length(titles)
 
 
 titles1 <- titles[stringr::str_length(titles)>15]
-titles1
-library(MASS)
-x=table(survey$Smoke,survey$Exer)
-class(x)
-x= as.matrix(x)
-chisq.test(x)
+titles1 <- titles1[!duplicated(titles1)]
+
+write.csv(titles1,file="read.csv")
+
