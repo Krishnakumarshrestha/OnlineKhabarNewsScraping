@@ -16,3 +16,8 @@ vect <- stringr::str_length(titles)
 
 titles1 <- titles[stringr::str_length(titles)>15]
 titles1
+library(MASS)
+x=table(survey$Smoke,survey$Exer)
+class(x)
+x= as.matrix(x)
+chisq.test(x)
